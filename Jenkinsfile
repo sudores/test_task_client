@@ -12,7 +12,7 @@ pipeline {
         } 
         stage("Build") {
             steps {
-                sh 'docker build -t vepl/test_task_client:latest'
+                sh 'docker build . -t vepl/test_task_client:latest'
                 sh 'docker push vepl/test_task_client:latest'
             }
         }
