@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-        USER         = 'vepl'
-        IMAGE_NAME   = 'test-task-client'
-        COMMIT       = ''
-        IMAGE_TAG    = ''
+        USER         = "vepl"
+        IMAGE_NAME   = "test-task-client"
+        COMMIT       = ""
+        IMAGE_TAG    = ""
     }
     stages {
         stage("Need") {
