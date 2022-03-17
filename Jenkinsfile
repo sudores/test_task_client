@@ -26,7 +26,7 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    def img = docker.build("$USER/$IMAGE_NAME:$COMMIT" ".")
+                    def img = docker.build("$USER/$IMAGE_NAME:$COMMIT", ".")
                     img.push("$USER/$IMAGE_NAME:$COMMIT")
                 }
            } 
