@@ -10,7 +10,8 @@ pipeline {
         stage("Need") {
             steps {
                 script {
-                    env.COMMIT    = sh 'git log --pretty=format:'%h' -1'
+                    env.COMMIT = sh 'git log --pretty=format:'%h' -1'
+                    echo env.COMMIT
                 }
             }
         }
