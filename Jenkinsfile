@@ -6,7 +6,7 @@ pipeline {
                 sh 'node -v'
                 sh 'npm -v'
                 sh 'yarn -v'
-                sh 'yarn run install'
+                sh 'yarn install'
                 sh 'yarn run test'
             }
         }
