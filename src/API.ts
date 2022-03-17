@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-const baseUrl: string = 'http://test-task.ttk.loc'
+const baseUrl: string = 'test_url_test'
 
 export const getTodos = async (): Promise<AxiosResponse<ApiDataType>> => {
   try {
