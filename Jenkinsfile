@@ -1,6 +1,19 @@
 pipeline {
     agent any
+    environment {
+        USER         = 'vepl'
+        IMAGE_NAME   = 'test-task-client'
+        COMMIT       = ''
+        IMAGE_TAG    = ''
+    }
     stages {
+        stage("Need") {
+            steps {
+                script {
+                    env.COMMIT    = sh 'git log --pretty=format:'%h' -1'
+                }
+            }
+        }
         stage("Test") {
             steps {
                 sh 'node -v'
@@ -12,9 +25,11 @@ pipeline {
         } 
         stage("Build") {
             steps {
-                sh 'docker build . -t vepl/test_task_client:latest'
-                sh 'docker push vepl/test_task_client:latest'
-            }
+                script {
+                    def img = docker.build("$USER/$IMAGE_NAME:$COMMIT" ".")
+                    img.push("$USER/$IMAGE_NAME:$COMMIT")
+                }
+           } 
         }
 
     }
