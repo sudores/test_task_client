@@ -1,14 +1,15 @@
 pipeline {
     agent any
-    environment {
-        USER         = "vepl"
-        IMAGE_NAME   = "test-task-client"
-        COMMIT       = ""
-        IMAGE_TAG    = ""
-    }
+    //environment {
+    //    USER         = "vepl"
+    //    IMAGE_NAME   = "test-task-client"
+    //    COMMIT       = ""
+    //    IMAGE_TAG    = ""
+    //}
     stages {
         stage("Need") {
             steps {
+                echo 'environment is done, need is runing'
                 script {
                     env.COMMIT = sh 'git log --pretty=format:'%h' -1'
                     echo env.COMMIT
