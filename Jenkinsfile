@@ -8,12 +8,14 @@ pipeline {
     stages {
         stage("Need") {
             steps {
-                echo 'environment is done, need is runing'
-                echo "USER $USER"
-                echo "IMAGE_NAME $IMAGE_NAME"
-                COMMIT = getStartedCommit()
-                echo "$COMMIT"
-                echo "COMMIT $COMMIT"
+                script {
+                    echo 'environment is done, need is runing'
+                    echo "USER $USER"
+                    echo "IMAGE_NAME $IMAGE_NAME"
+                    COMMIT = getStartedCommit()
+                    echo "$COMMIT"
+                    echo "COMMIT $COMMIT"
+                }
             }
         }
         stage("Test") {
@@ -28,7 +30,7 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    def img = docker.build("$USER/$IMAGE_NAME:$COMMIT", ".")
+                    img = docker.build("$USER/$IMAGE_NAME:$COMMIT", ".")
                     img.push()
                     img.push("latest")
                 }
