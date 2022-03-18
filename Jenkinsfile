@@ -34,15 +34,32 @@ pipeline {
             }
         } 
         stage("Build") {
+            when {
+                anyOf {
+                    branch "master";
+                    branch "dev";
+                }
+            }
             steps {
                 script {
                     img = docker.build("$USER/$IMAGE_NAME:$COMMIT", ".")
-                    img.push()
-                    img.push("latest")
                 }
            } 
         }
-
+        stage("Deploy") {
+            when {
+                anyOf {
+                    branch "master";
+                    branch "dev";
+                }
+            }
+            steps {
+                script {
+                    img.push()
+                    img.push("latest")
+                }
+            }
+        }
     }
 }
 
