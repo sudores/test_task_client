@@ -3,8 +3,8 @@ pipeline {
     environment {
         USER         = "vepl"
         IMAGE_NAME   = "test-task-client"
-        COMMIT       = ""
-        IMAGE_TAG    = ""
+        COMMIT       = "test"
+        IMAGE_TAG    = "test"
     }
     stages {
         stage("Need") {
