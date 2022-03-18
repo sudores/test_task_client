@@ -19,12 +19,11 @@ pipeline {
             }
         }
         stage("Test") {
+            agent docker {
+                image "node:17.7.1-alpine3.14"
+            }
             steps {
-                sh 'node -v'
-                sh 'npm -v'
-                sh 'yarn -v'
-                sh 'yarn install'
-                sh 'yarn run test'
+                sh """set -e; yarn; yarn test --all --watchAll=false"""
             }
         } 
         stage("Build") {
