@@ -19,6 +19,11 @@ pipeline {
             }
         }
         stage("Test") {
+            when {
+                not {
+                    equals expected: 0, actual: currentBuild.changeSets.size() 
+                }
+            }
             agent {
                 docker {
                     image "node:17.7.1-alpine3.14"
