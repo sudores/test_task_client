@@ -19,8 +19,10 @@ pipeline {
             }
         }
         stage("Test") {
-            agent docker {
-                image "node:17.7.1-alpine3.14"
+            agent {
+                docker {
+                    image "node:17.7.1-alpine3.14"
+                }
             }
             steps {
                 sh """set -e; yarn; yarn test --all --watchAll=false"""
