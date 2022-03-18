@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     def img = docker.build("$USER/$IMAGE_NAME:$COMMIT", ".")
-                    img.push("$USER/$IMAGE_NAME:$COMMIT")
+                    img.push()
                 }
            } 
         }
