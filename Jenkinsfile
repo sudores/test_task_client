@@ -10,14 +10,14 @@ pipeline {
         stage("Need") {
             steps {
                 echo 'environment is done, need is runing'
-                echo "$USER"
-                echo "$IMAGE_NAME"
-                echo "$COMMIT"
-                echo "$IMAGE_TAG"
-                script {
-                    env.COMMIT = sh 'git log --pretty=format:'%h' -1'
-                    echo env.COMMIT
-                }
+                echo "USER $USER"
+                echo "IMAGE_NAME $IMAGE_NAME"
+                echo "COMMIT $COMMIT"
+                echo "TAG $IMAGE_TAG"
+                //script {
+                //    env.COMMIT = sh 'git log --pretty=format:'%h' -1'
+                //    echo env.COMMIT
+                //}
             }
         }
         stage("Test") {
