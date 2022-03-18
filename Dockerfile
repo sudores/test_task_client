@@ -3,8 +3,9 @@ LABEL stage=build
 WORKDIR /build
 COPY . .
 ARG base_url='http:\/\/test-task.ttk.loc'
-RUN sed -ie "s/test_url_test/$base_url/g" src/API.ts; \
-        yarn; \ 
+RUN set -e ; \
+        sed -ie "s/test_url_test/$base_url/g" src/API.ts; \
+        yarn; \
         yarn build
 
 FROM nginx:1.21.6-alpine
