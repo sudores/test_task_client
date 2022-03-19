@@ -42,7 +42,7 @@ pipeline {
             }
             steps {
                 script {
-                    img = docker.build("$USER/$IMAGE_NAME-$BRANCH_NAME:$COMMIT", ".")
+                    img = docker.build("$USER/$IMAGE_NAME:$COMMIT", ".")
                 }
            } 
         }
