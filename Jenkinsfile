@@ -10,11 +10,11 @@ pipeline {
             steps {
                 script {
                     echo 'environment is done, need is runing'
+                    COMMIT = getStartedCommit()
                     echo "USER $USER"
                     echo "IMAGE_NAME $IMAGE_NAME"
-                    COMMIT = getStartedCommit()
-                    echo "$COMMIT"
                     echo "COMMIT $COMMIT"
+                    echo "BRANCH $BRANCH_NAME"
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
             }
             steps {
                 script {
-                    img = docker.build("$USER/$IMAGE_NAME:$COMMIT", ".")
+                    img = docker.build("$USER/$IMAGE_NAME-$BRANCH_NAME:$COMMIT", ".")
                 }
            } 
         }
@@ -71,3 +71,4 @@ String getStartedCommit() {
             ).trim()
     return result
 }
+
